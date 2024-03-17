@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,13 +23,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/posts', function () {
-    return view('posts.index');
-})->middleware(['auth', 'verified'])->name('posts');
 
-Route::get('/posts/create', function () {
-    return view('posts.create');
-})->middleware(['auth', 'verified'])->name('posts.create');
+Route::controller(PostController::class)->group(function(){
+    Route::get("posts", "index")-> name("posts.index");
+    Route::get("posts/create", "create")-> name("posts.create");
+    Route::post("posts", "store")-> name("posts.store");
+    Route::get("posts/{post}", "show")-> name("posts.show");
+    Route::get("posts/{post}/edit", "edit")-> name("posts.edit");
+    Route::put("posts/{post}", "update")-> name("posts.update");
+})->middleware(['auth', 'verified']);
 
 
 Route::middleware('auth')->group(function () {
