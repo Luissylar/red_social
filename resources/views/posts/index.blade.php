@@ -7,6 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 flex flex-col justify-center">
+                    <div class="flex items-center">
+                        <img src="{{ asset('users/img/perfil.webp') }}" alt="foto perfil" class=" h-12 rounded-full">
+                        <a href="{{route("posts.create")}}" class="ml-3 rounded-full border border-gray-400 p-2 w-3/6 hover:bg-gray-100">Que estas pensando?</a>
+                    </div>
+                </div>
+
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2">
                 <div class="p-6 text-gray-900 flex flex-col justify-center">
                     <div class="flex py-3">

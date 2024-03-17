@@ -26,6 +26,10 @@ Route::get('/posts', function () {
     return view('posts.index');
 })->middleware(['auth', 'verified'])->name('posts');
 
+Route::get('/posts/create', function () {
+    return view('posts.create');
+})->middleware(['auth', 'verified'])->name('posts.create');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
