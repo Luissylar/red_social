@@ -22,7 +22,7 @@
                     <div class="flex py-3">
                         <img src="{{ asset('users/img/perfil.webp') }}" alt="foto perfil" class=" h-12 rounded-full">
                         <div class="flex flex-col ml-2">
-                            <b>Luisa Quispe</b>
+                            <b>{{ $post->user->name }}</b>
                             <span>Hace 15 Horas.</span>
                         </div>
                     </div>
@@ -63,7 +63,10 @@
             </div>
             @endforeach
 
-            {{$posts -> links()}}
+            <div class="mt-4">
+                {{$posts -> links()}}
+            </div>
+
             
         </div>    
             

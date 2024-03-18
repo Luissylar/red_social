@@ -16,7 +16,7 @@ class PostController extends Controller
      public function index()
      {
         // Obtener todos los posts ordenados por fecha de creación de manera descendente y paginarlos
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::with('user')->latest()->paginate(5);
          
         // Pasar los posts paginados a la vista
         return view("posts.index", compact("posts"));
