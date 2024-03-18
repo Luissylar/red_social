@@ -17,7 +17,7 @@
             </div>
             
             @foreach ($posts as $post)
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2 ">
                 <div class="p-6 text-gray-900 flex flex-col justify-center">
                     <div class="flex py-3">
                         <img src="{{ $post->user->avatar }}" alt="foto perfil" class=" h-12 rounded-full">
