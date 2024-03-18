@@ -14,7 +14,7 @@
                         @csrf
                         <div class="flex items-center  w-full">
                             <img src="{{ asset('users/img/perfil.webp') }}" alt="foto perfil"  class=" h-12 rounded-full">
-                            <input id="postInput" name="content" class="ml-3 rounded-full border border-gray-400 p-2 w-full hover:bg-gray-100" placeholder="¿Qué estás pensando, Luis?" onkeyup="checkInput('postInput', 'submitButton')">
+                            <input id="postInput" name="content" class="ml-3 rounded-full border border-gray-400 p-2 w-full hover:bg-gray-100" placeholder="¿Qué estás pensando, {{ $user->name }}?" onkeyup="checkInput('postInput', 'submitButton')">
                         </div>
                         <div class="flex justify-center mt-4 flex-col items-center">
                             <button type="button" id="button" class="bg-gray-100 w-full flex flex-col items-center py-10 rounded-md hover:bg-gray-200">

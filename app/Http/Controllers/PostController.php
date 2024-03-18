@@ -28,7 +28,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("posts.create");
+        // Obtener el usuario autenticado
+        $user = Auth::user();
+        // Pasar el nombre del usuario a la vista
+        return view("posts.create", compact("user"));
     }
 
     /**

@@ -22,8 +22,8 @@
                     <div class="flex py-3">
                         <img src="{{ asset('users/img/perfil.webp') }}" alt="foto perfil" class=" h-12 rounded-full">
                         <div class="flex flex-col ml-2">
-                            <b>{{ $post->user->name }}</b>
-                            <span>Hace 15 Horas.</span>
+                            <b>{{ $post->user->name }} {{ $post->user->last_name }}</b>
+                            <span>{{ $post->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
                     <div class="py-2">
