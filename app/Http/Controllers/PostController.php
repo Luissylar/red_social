@@ -15,11 +15,14 @@ class PostController extends Controller
 
      public function index()
      {
+
+        // Obtener el usuario autenticado
+        $user = Auth::user();
         // Obtener todos los posts ordenados por fecha de creación de manera descendente y paginarlos
         $posts = Post::with('user')->latest()->paginate(5);
          
         // Pasar los posts paginados a la vista
-        return view("posts.index", compact("posts"));
+        return view("posts.index", compact("posts", "user"));
      }
 
 
@@ -53,10 +56,10 @@ class PostController extends Controller
             $fileName = time() . '_' . $file->getClientOriginalName(); // Generar un nombre de archivo único
      
             // Mover el archivo a la ubicación deseada
-            $file->move(public_path('users/img'), $fileName);
+            $file->move(public_path('users/posts'), $fileName);
              
             // Establecer la ruta del archivo para almacenar en la base de datos
-            $filePath = 'users/img/' . $fileName;
+            $filePath = 'users/posts/' . $fileName;
 
             // Convertir la ruta relativa a una URL completa
             $filePath = asset($filePath);

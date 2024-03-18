@@ -1,4 +1,5 @@
 <section>
+    <script src="{{ asset("js/posts.create.js")}}"></script>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
@@ -13,9 +14,19 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+        <div class="flex justify-center mt-4 flex-col items-center">
+            <x-input-label for="avatar" :value="__('Foto de perfil')" />
+            <button type="button" id="button" class="bg-gray-100 w-full flex flex-col items-center py-10 rounded-md hover:bg-gray-200">
+                <i class="far fa-image text-6xl text-center"></i>
+                <span>Agregar Fotos/Videos</span>
+            </button>
+            <img src="{{old('avatar', $user->avatar)}}" alt="" id="imgViualizate" class="mt-3 shadow-lg rounded-md">
+            <input type="file" name="avatar" id="mediaInput" accept="image/*,video/*" class="hidden" value="{{old('avatar', $user->avatar)}}">
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
