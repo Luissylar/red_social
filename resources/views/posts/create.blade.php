@@ -22,6 +22,7 @@
                                 <span>Agregar Fotos/Videos</span>
                             </button>
                             <img src="" alt="" id="imgViualizate" class="mt-3 shadow-lg rounded-md">
+                            <video src="" id="videoViualizate" class="mt-3 shadow-lg rounded-md" controls></video>
                             <input type="file" name="image_path" id="mediaInput" accept="image/*,video/*" class="hidden">
                         </div>
                         <button id="submitButton" class="bg-gray-300 text-white w-full rounded-md mt-4 py-2 hover:bg-blue-500" >Publicar</button>
