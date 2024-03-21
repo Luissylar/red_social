@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;// Asegúrate de importar el modelo Comment
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -79,9 +80,16 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        $user = Auth::user();
+
+        
+
+        // Cargar los comentarios con el post usando eager loading
+        $post->load('comments.user');
+
+        return view("posts.show", compact("post", "user"));
     }
 
     /**

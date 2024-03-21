@@ -22,9 +22,9 @@ return new class extends Migration
         // Si también deseas crear la tabla de comentarios en la misma migración (opcional):
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->text('comment'); // Contenido del comentario.
             $table->foreignId('post_id')->constrained()->onDelete('cascade'); // Relacionado con el post.
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relacionado con el usuario que comenta.
-            $table->text('comment'); // Contenido del comentario.
             $table->timestamps();
         });
     }

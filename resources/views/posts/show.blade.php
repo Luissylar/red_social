@@ -7,30 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 flex flex-col justify-center">
-                    <div class="flex items-center">
-                        
-                        @if ($user->avatar)
-                            <img src="{{$user->avatar }}" alt="foto perfil" class=" h-12 rounded-full">
-                        @else
-                            <i class="fa-regular fa-user fa-2x rounded-full"></i>
-                        @endif
-                        <a href="{{route("posts.create")}}" class="ml-3 rounded-full border border-gray-400 p-2 w-3/6 hover:bg-gray-100">Que estas pensando?</a>
-                    </div>
-                </div>
-            </div>
-            
-            @foreach ($posts as $post)
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2 ">
                 <div class="p-6 text-gray-900 flex flex-col justify-center">
                     <div class="flex py-3">
-                        
                         @if ($post->user->avatar)
-                            <img src="{{ $post->user->avatar }}" alt="foto perfil" class=" h-12 rounded-full">
+                            <img src="{{ $post->user->avatar }}" alt="foto perfil" class="h-12 rounded-full">
                         @else
                             <i class="fa-regular fa-user fa-2x rounded-full"></i>
                         @endif
+
                         <div class="flex flex-col ml-2">
                             <b>{{ $post->user->name }} {{ $post->user->last_name }}</b>
                             <span>{{ $post->created_at->diffForHumans() }}</span>
@@ -70,10 +55,10 @@
                             <i class="fa-regular fa-thumbs-up"></i>
                             <span>Me Gusta</span>
                         </button>
-                        <a href="{{ route('posts.show', $post) }}">
+                        <button>
                             <i class="fa-regular fa-message"></i>
                             <span>Comentario</span>
-                        </a>
+                        </button>
                         <button>
                             <i class="fa-brands fa-whatsapp"></i>
                             <span>Enviar</span>
@@ -83,13 +68,49 @@
                             <span>Compartir</span>
                         </button>
                     </div>
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        @foreach ($post->comments as $comment)
+                            <div class="comment flex flex-col w-full py-3">
+                                <div class="flex ">
+                                    @if ($comment->user->avatar)
+                                        <img src="{{ $comment->user->avatar }}" alt="foto perfil" class="h-8 w-8 rounded-full">
+                                    @else
+                                        <i class="fa-regular fa-user fa-2x rounded-full"></i>
+                                    @endif
+                                    <div class="flex flex-col ml-3 bg-gray-200 w-full rounded-lg p-3">
+                                        <b>{{ $comment->user->name }} {{ $comment->user->last_name }}</b>
+                                        <span>{{ $comment->comment }} <!-- El contenido del comentario --></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="ml-10">
+                                    <span>{{ $comment->created_at->diffForHumans() }}</span> <!-- Fecha del comentario -->
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="py-6 text-gray-900 flex flex-col justify-center">
+                            <form action="{{ route('comments.store', $post->id) }}" method="POST" class="flex items-center justify-between w-full">
+                                @csrf
+                                <div class="flex w-2/3">
+                                    @if (auth()->user()->avatar)
+                                        <img src="{{ auth()->user()->avatar }}" alt="foto perfil" class="h-12 rounded-full">
+                                    @else
+                                        <i class="fa-regular fa-user fa-2x rounded-full"></i>
+                                    @endif
+
+                                    <input name="comment" placeholder="{{ auth()->user()->name }}, Deja tu comentario" class="ml-3 rounded-full border border-gray-400 p-2 w-full hover:bg-gray-100">
+                                </div>
+                                <button type="submit" class="bg-gray-400 p-3 rounded-md hover:bg-blue-600 hover:text-white">
+                                    <i class="fa-regular fa-paper-plane"></i> Publicar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            @endforeach
+            
 
-            <div class="mt-4">
-                {{$posts -> links()}}
-            </div>
+            
 
             
         </div>    

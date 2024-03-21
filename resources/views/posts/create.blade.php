@@ -13,7 +13,11 @@
                     <form class="w-1/3" action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="flex items-center  w-full">
-                            <img src="{{$user->avatar }}" alt="foto perfil"  class=" h-12 rounded-full">
+                            @if ($user->avatar)
+                                <img src="{{$user->avatar }}" alt="foto perfil"  class=" h-12 rounded-full">    
+                            @else
+                                <i class="fa-regular fa-user fa-2x rounded-full"></i>
+                            @endif
                             <input id="postInput" name="content" class="ml-3 rounded-full border border-gray-400 p-2 w-full hover:bg-gray-100" placeholder="¿Qué estás pensando, {{ $user->name }}?" onkeyup="checkInput('postInput', 'submitButton')">
                         </div>
                         <div class="flex justify-center mt-4 flex-col items-center">
