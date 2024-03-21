@@ -1,5 +1,5 @@
 <section>
-    <script src="{{ asset("js/posts.create.js")}}"></script>
+    <script src="{{ asset("js/profile/update.js")}}"></script>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
